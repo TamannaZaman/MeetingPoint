@@ -1,0 +1,38 @@
+{% extends "feed/layout.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block searchform %}
+<form class="my-2 my-lg-0 ml-5 form-inline" action="{% url 'search_posts' %}" method="get">
+  <div class="input-group">
+    <input class="form-control" name="p" type="text" placeholder="Search posts.." />
+    <div class="input-group-append">
+      <button class="btn btn-info" type="submit">
+        Search
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock searchform %} {% block content %}
+<br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h2 class="form-title text-center"><b>Post</b></h2>
+          <form class="form-signin" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <br />
+              {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                Post</button><br />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block jsfiles %}{% endblock jsfiles %}
